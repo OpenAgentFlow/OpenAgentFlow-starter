@@ -1,0 +1,16 @@
+{
+  "name": "openagentflow-starter",
+  "version": "0.1.0",
+  "description": "Quickstart template repository for building executable multi-agent workflows with OpenAgentFlow (.oaf).",
+  "type": "module",
+  "scripts": {
+    "setup": "node setup.js",
+    "triage": "npx openagentflow run workflows/support-triage.oaf --input inputs/triage-ticket.json",
+    "dev-flow": "npx openagentflow run workflows/software-dev.oaf --input inputs/feature-request.json",
+    "compile-triage": "npx openagentflow compile workflows/support-triage.oaf --output triage_app.py --target langgraph"
+  },
+  "dependencies": {
+    "openagentflow": "latest"
+  },
+  "license": "MIT"
+}

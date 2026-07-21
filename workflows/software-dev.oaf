@@ -1,0 +1,52 @@
+workflow "Automated Feature Specification & Code Scaffolding" {
+
+    config {
+        max_iterations: 4
+        timeout_seconds: 90
+    }
+
+    state {
+        feature_request: string
+        target_language: string
+        architecture_spec: string
+        code_scaffold: string
+        test_plan: string
+    }
+
+    agent Architect {
+        instructions: """
+        Analyze the requested feature and target language.
+        Write a concise, rigorous architecture specification outlining key modules, data structures, and edge cases.
+        """
+        model: "gpt-4o"
+        temperature: 0.2
+        inputs: [feature_request, target_language]
+        outputs: [architecture_spec]
+    }
+
+    agent Developer {
+        instructions: """
+        Using the architecture specification, generate clean, well-commented code scaffolding in the target language.
+        Ensure modularity and zero boilerplate.
+        """
+        model: "gpt-4o"
+        temperature: 0.3
+        inputs: [feature_request, target_language, architecture_spec]
+        outputs: [code_scaffold]
+    }
+
+    agent QAEngineer {
+        instructions: """
+        Review the architecture spec and generated code scaffold.
+        Draft a comprehensive unit test and edge-case verification plan.
+        """
+        model: "gpt-4o"
+        temperature: 0.3
+        inputs: [architecture_spec, code_scaffold]
+        outputs: [test_plan]
+    }
+
+    flow {
+        start -> Architect -> Developer -> QAEngineer -> end
+    }
+}

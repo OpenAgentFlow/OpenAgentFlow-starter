@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python & LangGraph
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Compiled Outputs & Runtime
+triage_app.py
+*_app.py
+
+# Environment & Secrets
+.env
+.DS_Store

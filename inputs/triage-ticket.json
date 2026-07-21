@@ -1,0 +1,4 @@
+{
+  "ticket_text": "Hi team, our production webhook endpoint keeps throwing 504 Gateway Timeouts whenever batch payloads exceed 500 records. This is halting our enterprise nightly sync!",
+  "user_tier": "Enterprise Gold"
+}

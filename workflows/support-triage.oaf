@@ -1,0 +1,42 @@
+workflow "Customer Support Triage & Auto-Response" {
+
+    config {
+        max_iterations: 3
+        timeout_seconds: 45
+    }
+
+    state {
+        ticket_text: string
+        user_tier: string
+        category: string
+        urgency: string
+        suggested_reply: string
+    }
+
+    agent Classifier {
+        instructions: """
+        Analyze the incoming customer support ticket.
+        Categorize the issue into: 'Billing', 'Technical Bug', or 'Feature Request'.
+        Assess the urgency level: 'Low', 'Medium', or 'Critical'.
+        """
+        model: "gemini-2.0-flash"
+        temperature: 0.1
+        inputs: [ticket_text, user_tier]
+        outputs: [category, urgency]
+    }
+
+    agent Responder {
+        instructions: """
+        Draft an empathetic, helpful, professional response to the customer based on their tier, issue category, and urgency level.
+        If urgency is 'Critical', assure them that a senior engineer has been notified immediately.
+        """
+        model: "gemini-2.0-flash"
+        temperature: 0.6
+        inputs: [ticket_text, user_tier, category, urgency]
+        outputs: [suggested_reply]
+    }
+
+    flow {
+        start -> Classifier -> Responder -> end
+    }
+}
