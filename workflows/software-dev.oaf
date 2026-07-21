@@ -47,6 +47,9 @@ workflow "Automated Feature Specification & Code Scaffolding" {
     }
 
     flow {
-        start -> Architect -> Developer -> QAEngineer -> end
+        start -> Architect
+        Architect -> Developer
+        Developer -> QAEngineer
+        QAEngineer -> end
     }
 }

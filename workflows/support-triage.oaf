@@ -37,6 +37,8 @@ workflow "Customer Support Triage & Auto-Response" {
     }
 
     flow {
-        start -> Classifier -> Responder -> end
+        start -> Classifier
+        Classifier -> Responder
+        Responder -> end
     }
 }
