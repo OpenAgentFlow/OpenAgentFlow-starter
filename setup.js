@@ -59,8 +59,8 @@ if (!fs.existsSync(pipPath)) {
 // 5. Install Python dependencies
 console.log('⏳ Installing LangGraph runtime dependencies from requirements.txt...');
 try {
-  execSync(`"${pipPath}" install --upgrade pip`, { stdio: 'inherit' });
-  execSync(`"${pipPath}" install -r requirements.txt`, { stdio: 'inherit' });
+  execSync(`"${pythonVenvPath}" -m pip install --upgrade pip`, { stdio: 'inherit' });
+  execSync(`"${pythonVenvPath}" -m pip install -r requirements.txt`, { stdio: 'inherit' });
   console.log('\n🎉 Setup complete! All dependencies installed successfully.\n');
   console.log('👉 Next Steps:');
   console.log('   1. Add your LLM API keys: npx openagentflow auth (or edit .env)');
