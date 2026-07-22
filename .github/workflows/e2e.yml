@@ -1,0 +1,48 @@
+name: E2E Workflows Test
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  test-e2e:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Node Dependencies
+        run: npm ci
+
+      - name: Run Project Setup (venv & LangGraph dependencies)
+        run: npm run setup
+
+      - name: Run Customer Support Triage Workflow (Live E2E)
+        run: npm run triage
+
+      - name: Run Software Dev Pipeline Workflow (Live E2E)
+        run: npm run dev-flow
+
+      - name: Compile Triage Workflow to Python (LangGraph)
+        run: npm run compile-triage
+
+      - name: Execute Compiled Python App Directly
+        run: ./venv/bin/python triage_app.py
