@@ -19,7 +19,7 @@ workflow "Customer Support Triage & Auto-Response" {
         Categorize the issue into: 'Billing', 'Technical Bug', or 'Feature Request'.
         Assess the urgency level: 'Low', 'Medium', or 'Critical'.
         """
-        model: "gemini-2.0-flash"
+        model: "gemma-4-26b-a4b-it"
         temperature: 0.1
         inputs: [ticket_text, user_tier]
         outputs: [category, urgency]
@@ -30,7 +30,7 @@ workflow "Customer Support Triage & Auto-Response" {
         Draft an empathetic, helpful, professional response to the customer based on their tier, issue category, and urgency level.
         If urgency is 'Critical', assure them that a senior engineer has been notified immediately.
         """
-        model: "gemini-2.0-flash"
+        model: "gemma-4-26b-a4b-it"
         temperature: 0.6
         inputs: [ticket_text, user_tier, category, urgency]
         outputs: [suggested_reply]

@@ -18,7 +18,7 @@ workflow "Automated Feature Specification & Code Scaffolding" {
         Analyze the requested feature and target language.
         Write a concise, rigorous architecture specification outlining key modules, data structures, and edge cases.
         """
-        model: "gpt-4o"
+        model: "gemma-4-26b-a4b-it"
         temperature: 0.2
         inputs: [feature_request, target_language]
         outputs: [architecture_spec]
@@ -29,7 +29,7 @@ workflow "Automated Feature Specification & Code Scaffolding" {
         Using the architecture specification, generate clean, well-commented code scaffolding in the target language.
         Ensure modularity and zero boilerplate.
         """
-        model: "gpt-4o"
+        model: "gemma-4-26b-a4b-it"
         temperature: 0.3
         inputs: [feature_request, target_language, architecture_spec]
         outputs: [code_scaffold]
@@ -40,7 +40,7 @@ workflow "Automated Feature Specification & Code Scaffolding" {
         Review the architecture spec and generated code scaffold.
         Draft a comprehensive unit test and edge-case verification plan.
         """
-        model: "gpt-4o"
+        model: "gemma-4-26b-a4b-it"
         temperature: 0.3
         inputs: [architecture_spec, code_scaffold]
         outputs: [test_plan]
