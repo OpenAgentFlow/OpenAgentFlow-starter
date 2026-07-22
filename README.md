@@ -40,3 +40,10 @@ Welcome! This template repository lets you instantly build, test, and compile mu
    # macOS/Linux: source venv/bin/activate
    python triage_app.py
    ```
+
+## 🐳 Dev Containers & GitHub Codespaces
+
+This repository includes a preconfigured **Development Container** (`.devcontainer/devcontainer.json`).
+- **VS Code**: Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers), open the project, and select **Reopen in Container**.
+- **GitHub Codespaces**: Open this repo in Codespaces for an instant, zero-setup browser environment with Node 22, Python 3.11, `venv`, and OpenAgentFlow extensions ready out of the box!
+
