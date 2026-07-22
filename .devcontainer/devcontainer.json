@@ -2,7 +2,7 @@
   "name": "OpenAgentFlow Starter Dev Container",
   "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {
+    "ghcr.io/devcontainers/features/node:2.1.0": {
       "version": "22"
     },
     "ghcr.io/devcontainers/features/git:1": {}
